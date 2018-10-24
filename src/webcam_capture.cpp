@@ -18,12 +18,7 @@ int main(int argc, char *argv[])
    	int user_key; //user pressed key to quit
     	Mat grayimage;
     	Mat Luvimage;
-        Mat HSVimage;
-
-
-
-    
-	
+	Mat HSVimage;
 
 	//check user args
 	switch(argc)
