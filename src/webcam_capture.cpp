@@ -6,14 +6,24 @@
 #include <iostream>
 #include <cstdlib>
 
+using namespace cv;
+
 //main
 int main(int argc, char *argv[])
 {
-    cv::VideoCapture camera; //OpenCV video capture object
-    cv::Mat image; //OpenCV image object
-	int cam_id; //camera id . Associated to device number in /dev/videoX
-	cv::Scalar_<unsigned char> px_value; //pixel value (4-element vector)
-	int user_key; //user pressed key to quit
+   	VideoCapture camera; //OpenCV video capture object
+   	Mat image; //OpenCV image object
+   	int cam_id; //camera id . Associated to device number in /dev/videoX
+   	Scalar_<unsigned char> px_value; //pixel value (4-element vector)
+   	int user_key; //user pressed key to quit
+    	Mat grayimage;
+    	Mat Luvimage;
+        Mat HSVimage;
+
+
+
+    
+	
 
 	//check user args
 	switch(argc)
@@ -50,8 +60,31 @@ int main(int argc, char *argv[])
             cv::waitKey();
         }
 
+	// Change color image to grayscale image
+	cvtColor( image, grayimage, CV_BGR2GRAY );
+
+	// Change color image to Luv image
+	cvtColor( image, Luvimage, CV_BGR2Luv );
+
+	// Change color image to Luv image
+	cvtColor( image, HSVimage, CV_BGR2HSV );
+
+/*
+
         //show image in a window
         cv::imshow("Output Window", image);
+
+        //show grayscale image in a window
+        cv::imshow("Output Window", grayimage);
+
+        //show Luv image in a window
+        cv::imshow("Output Window", Luvimage);
+
+*/
+        //show HSV image in a window
+        cv::imshow("Output Window", HSVimage);
+
+
 
 		//Waits 30 millisecond to check if 'q' key has been pressed. If so, breaks the loop. Otherwise continues.
     	if( (unsigned char)(cv::waitKey(30) & 0xff) == 'q' ) break; 
